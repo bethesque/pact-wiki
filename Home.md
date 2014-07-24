@@ -2,7 +2,7 @@ Welcome to the pact wiki!
 
 ## Index
 * [Terminology](Terminology)
-* [Provider states](FAQ)
+* [Provider states](Provider-states)
 * [Frequently asked questions](FAQ)
 * [Rarely asked questions](RAQ)
 * [Development workflow](Development-workflow)
