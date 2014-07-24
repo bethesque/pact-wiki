@@ -1,7 +1,7 @@
 Welcome to the pact wiki!
 
 ## Index
-
+* [Terminology](Terminology)
 * [Provider states](FAQ)
 * [Frequently asked questions](FAQ)
 * [Rarely asked questions](RAQ)
