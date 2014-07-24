@@ -5,6 +5,7 @@ Welcome to the pact wiki!
 * [Provider states](Provider-states)
 * [Frequently asked questions](FAQ)
 * [Rarely asked questions](RAQ)
+* [Best practices](Best-practices)
 * [Development workflow](Development-workflow)
 * [Troubleshooting](Troubleshooting)
 * [Using pact where the consumer team is different from the provider team](Using-pact-where-the-consumer-team-is-different-from-the-provider-team)
