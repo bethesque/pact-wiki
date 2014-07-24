@@ -4,4 +4,5 @@
 * Running the pact verification task in a separate CI build from the rest of the test for the provider is a good idea - if you have it in the same build as the rest of the standalone tests, someone is going to get cranky about another team being able to break their build.
 
 # How to develop new functionality while keeping all the builds green
+See [Development workflow](Development-workflow)
 
