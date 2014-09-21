@@ -2,13 +2,13 @@
 
 ## In your consumer project
 
-#### Publish your pacts as artifacts on your CI machine or use a [Pact Broker](https://github.com/bethesque/pact_broker)
+#### Make the latest pact available to the provider via a URL
 
-Either of these techniques makes the pact available via URL, which your provider build can then use when it runs pact:verify. This means your provider will always be verified against the latest pact from your consumer.
+See [Sharing pacts between consumer and provider](Sharing-pacts-between-consumer-and-provider) for options to implement this.
 
-#### Ensure all calls to the provider go through your provider client class
+#### Ensure all calls to the provider go through methods that have been tested with Pact
 
-Do not hand create any HTTP requests in your consumer app or specs. Testing through your provider client class gives you the assurance that your consumer app will be creating exactly the HTTP requests that you think it should.
+Do not hand create any HTTP requests directly in your consumer app. Testing through a client class gives you the assurance that your consumer app will be creating exactly the HTTP requests that you think it should.
 
 #### Ensure the models you stub with are valid
 
@@ -16,17 +16,17 @@ Sure, you've checked that your client deserialises the HTTP response into the ob
 
 ## In your provider project
 
-#### Retrieve pacts from the [Pact Broker](https://github.com/bethesque/pact_broker) or use the pact artifact published by your consumer's CI build
+#### Ensure that the latest pact is being verified
 
-Configure the pact_uri in the Pact.service_provider block with the pact URL of your last successful build, whether that's from the pact broker, or your CI build. This way you're only verifying green builds. No point verifying a broken one.
+Use a URL that you know the latest pact will be made available at. Do not rely on manual intervention (eg. someone copying a file across to the provider project) because this process will _inevitably_ break down, and your verification task will give you a false positive. Do not try to "protect" your build from being broken by instigating a manual pact update process. `pact:verify` is the canary of your integration - manual updates would be like giving your canary a gas mask.
 
 #### Ensure that pact:verify runs as part of your CI build
 
 It should run with all your other tests.
 
-#### In pact:verify on the provider, only stub layers beneath where contents of the request body are extracted
+#### Only stub layers beneath where contents of the request body are extracted
 
-If you don't _have_ to stub anything in the provider when running pact:verify, then don't. If you do need to stub something, make sure that you only stub the code that gets executed _after_ the contents of the request body have been extracted and/or validated, otherwise, there is no verification that what is included in the body of a request matches what is actually expected.
+If you don't _have_ to stub anything in the provider when running pact:verify, then don't. If you do need to stub something, make sure that you only stub the code that gets executed _after_ the contents of the request body have been extracted and/or validated. Otherwise, you could send any old garbage in a `POST` or `PUT` body, and your provider wouldn't even notice.
 
 #### Stub calls to downstream systems
 
