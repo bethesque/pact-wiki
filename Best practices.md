@@ -14,6 +14,12 @@ Do not hand create any HTTP requests directly in your consumer app. Testing thro
 
 Sure, you've checked that your client deserialises the HTTP response into the object you expect, but then you need to make sure in your other tests where you stub your client that you're stubbing it with a valid object (eg. is `time` a Time or a DateTime?). One way to do this is to use factories or fixtures to create the models for all your tests. See this [gist](https://gist.github.com/bethesque/69ae590e8312523e5337) for a more detailed explanation.
 
+#### Always put expectations on the response body of a PUT, POST or PATCH
+
+Each interaction is tested in isolation, meaning you can't do a PUT/POST/PATCH, and then follow it with a GET to ensure that the values you sent were actually read successfully by the provider. If you send a `lastname` instead of a `surname` field, a provider will most likely ignore the misnamed field, and return a 200, failing to alert you to the fact that your `lastname` has gone to the big /dev/null in the sky.
+
+To ensure you don't have a Garbage In Garbage Out situation, expect the response body to contain the newly updated values of the resource, and all will be well.
+
 ## In your provider project
 
 #### Ensure that the latest pact is being verified
