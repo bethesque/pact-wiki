@@ -7,9 +7,9 @@ The development process will be different for every organisation, but this is on
 ## Initial development
 1. Consumer - Write consumer tests with pact
 1. Consumer - Implement consumer 
-1. Consumer - Add `pact:publish` task to consumer build or publish pact as CI artifact
+1. Consumer - Make pact [available](https://github.com/realestate-com-au/pact/wiki/Sharing-pacts-between-consumer-and-provider) to provider project.
 1. Provider - Create provider project
-1. Provider - Configure pact:verify task to point to latest published pact
+1. Provider - Configure `pact:verify` task to point to latest published pact
 1. Provider - Implement provider until `pact:verify` passes
 
 ## New features
