@@ -10,7 +10,7 @@ Work out the URL to the pact created by the most recent successful build, and co
 
 #### 3. Use Github/Bitbucket URL
 
-This only works for repositories that don't require authentication to read. Make sure that you always regenerate the pacts before committing if you make any changes to the pact specs.
+This only works for repositories that don't require authentication to read. Make sure that you always regenerate the pacts before committing if you make any changes to the pact specs, and that the specs are always passing before you commit, because you don't want to verify the pact from a broken build.
 
 #### 4. Use a Pact Broker
 
