@@ -1,15 +1,19 @@
 You want to ensure that the provider has access to the latest version of the pact at all times. There are a few ways you can do this, depending on your requirements.
 
-1. Consumer CI build commits pact to provider codebase
+#### 1. Consumer CI build commits pact to provider codebase
+
 Pretty self explanatory.
 
-2. Publish pacts as CI build artefacts
+#### 2. Publish pacts as CI build artefacts
+
 Work out the URL to the pact created by the most recent successful build, and configure the `pact:verify` task to point to this URL.
 
-3. Use Github/Bitbucket URL
+#### 3. Use Github/Bitbucket URL
+
 This only works for repositories that don't require authentication to read. Make sure that you always regenerate the pacts before committing if you make any changes to the pact specs.
 
-4. Use a Pact Broker
+#### 4. Use a Pact Broker
+
 The [Pact Broker][pact-broker] is a repository for sharing pacts between projects. It also provides:
 * Auto-generated documentation
 * Dynamically generated network diagrams
