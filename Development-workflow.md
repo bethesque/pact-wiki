@@ -20,6 +20,4 @@ The development process will be different for every organisation, but this is on
 1. Provider - Develop and release new provider feature.
 1. Consumer - Merge feature branch into main development branch, and publish new pact.
 
-This may seem complex, but it is actually surfacing the underlying reality, that:
-1. you should not be committing functionality to the master branch of the consumer before it can be supported by the provider
-2. that the functionality of the provider should still be driven by the needs of the consumer.
+This may seem complex, but it is actually surfacing the underlying reality, that 1. you should not be committing functionality to the master branch of the consumer before it can be supported by the provider and 2. that the functionality of the provider should still be driven by the needs of the consumer.
