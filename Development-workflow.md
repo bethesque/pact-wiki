@@ -14,9 +14,12 @@ The development process will be different for every organisation, but this is on
 
 ## New features
 
-1. Add new feature, with pact specs, to consumer project on a new feature branch.
-1. In the provider project, use `rake pact:verify:at[/path/to/pact/on/branch]` to verify the new pact.
-1. Commit/release new provider feature.
-1. Merge consumer branch into main development branch, and publish new pact.
+1. Consumer - Add new consumer feature, with pact specs, on a feature branch.
+1. Consumer - Talk to the provider team about the new functionality that is required, and give them access to the pact with the new features.
+1. Provider - In the provider project, use `rake pact:verify:at[/path/to/pact/on/branch]` to verify the new pact.
+1. Provider - Develop and release new provider feature.
+1. Consumer - Merge feature branch into main development branch, and publish new pact.
 
-This may seem complex, but it is actually sufacing the underlying reality, that you cannot add new functionality to the consumer before it can be supported by the provider, and that the functionality that the provider supports should still be driven by the needs of the consumer.
+This may seem complex, but it is actually surfacing the underlying reality, that:
+1. you should not be committing functionality to the master branch of the consumer before it can be supported by the provider
+2. that the functionality of the provider should still be driven by the needs of the consumer.
