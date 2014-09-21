@@ -5,6 +5,7 @@ Welcome to the pact wiki!
 * [Provider states](Provider-states)
 * [Frequently asked questions](FAQ)
 * [Rarely asked questions](RAQ)
+* [Sharing pacts between consumer and provider](Sharing-pacts-between-consumer-and-provider)
 * [Best practices](Best-practices)
 * [Development workflow](Development-workflow)
 * [Troubleshooting](Troubleshooting)
