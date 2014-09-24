@@ -1,6 +1,6 @@
 Sometimes you will have keys in a request or response with values that are hard to know beforehand - timestamps and generated IDs are two examples. One way to handle this problem in the Consumer tests is to use Pact to unit test the client class (the one responsible for handling the HTTP conversation with the provider) only, and not use it for integration tests where times and IDs are hard to control.
 
-However, this is not always practical, and really, there should be a way to say "I expect something matching this regular expression, but I don't care what the actual value is". If you are using the Ruby implementation of Pact for both the Consumer and the Provider, then you are in luck! \**
+However, this is not always practical, and really, there should be a way to say "I expect something matching this regular expression, but I don't care what the actual value is". If you are using the Ruby implementation of Pact for both the Consumer and the Provider, then you are in luck! [**](#footnote)
 
 ```ruby
 animal_service.given("an alligator named Mary exists").
@@ -39,4 +39,5 @@ The `matcher` will be used to ensure that the actual request query was in the ri
 
 You can use `Pact::Term` for request and response header values, the request query, and inside request and response bodies.
 
-\** (Unfortunately, this technique involves serialising Ruby specific JSON, so it can't be used with any of the other Pact implementations. Hang around for v2 of the [Pact Specification](https://github.com/bethesque/pact-specification) for cross language regular expressions.)
+
+<a name="footnote">**</a> (Unfortunately, this technique involves serialising Ruby specific JSON, so it can't be used with any of the other Pact implementations. Hang around for v2 of the [Pact Specification](https://github.com/bethesque/pact-specification) for cross language regular expressions.)
