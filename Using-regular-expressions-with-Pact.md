@@ -19,7 +19,7 @@ animal_service.given("an alligator named Mary exists").
     })
 ```
 
-Note the use of the `Pact::Term`. When you run the Consumer tests, the mock server will return the value that you specified to "generate", and when you verify the pact in the Provider codebase, it will ensure that the value matches the specified regular expression.
+Note the use of the `Pact::Term`. When you run the Consumer tests, the mock server will return the value that you specified to "generate", and when you verify the pact in the Provider codebase, it will ensure that the value at that key matches the specified regular expression.
 
 You can also use `Pact::Term` for request matching.
 
@@ -28,7 +28,9 @@ animal_service.given("an alligator named Mary exists").
   upon_receiving("a request for an alligator").
   with(
     path: "/alligators/Mary", 
-    query: Pact::Term.new(generate: "transactionId=1234", matcher: /transactionId=\d{4}/),
+    query: Pact::Term.new(
+      generate: "transactionId=1234", 
+      matcher: /transactionId=\d{4}/),
   will_respond_with(
     status: 200, ...)
 ```
