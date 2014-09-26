@@ -37,7 +37,7 @@ animal_service.given("an alligator named Mary exists").
 
 The `matcher` will be used to ensure that the actual request query was in the right format, and the value specified in the `generate` field will be the one that is replayed against the provider as an example of what a real value would look like. This means that your provider states can still use known values to set up their data, but your Consumer tests can generate data on the fly.
 
-You can use `Pact::Term` for request and response header values, the request query, and inside request and response bodies. Note that regular expressions can only be used on Strings, and that (currently) the request query is just matched as normal String - no flexible ordering is catered for. 
+You can use `Pact::Term` for request and response header values, the request query, and inside request and response bodies. Note that regular expressions can only be used on Strings, and that (currently) the request query is just matched as normal String - no flexible ordering of parameters is catered for. 
 
 
 <a name="footnote">**</a> (Unfortunately, this technique involves serialising Ruby specific JSON, so it can't be used with any of the other Pact implementations. Hang around for v2 of the [Pact Specification](https://github.com/bethesque/pact-specification) for cross language regular expressions.)
