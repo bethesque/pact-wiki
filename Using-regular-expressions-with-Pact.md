@@ -7,6 +7,7 @@ What you need is a way to say "I expect something matching this regular expressi
 animal_service.given("an alligator named Mary exists").
   upon_receiving("a request for an alligator").
   with(
+    method: "get",
     path: "/alligators/Mary", 
     headers: {"Accept" => "application/json"}).
   will_respond_with(
@@ -28,6 +29,7 @@ You can also use `Pact::Term` for request matching.
 animal_service.given("an alligator named Mary exists").
   upon_receiving("a request for an alligator").
   with(
+    method: "get",
     path: "/alligators/Mary", 
     query: Pact::Term.new(
       generate: "transactionId=1234", 
@@ -51,6 +53,7 @@ Often, you will not care what the exact value is at a particular path is, you ju
 animal_service.given("an alligator named Mary exists").
   upon_receiving("a request for an alligator").
   with(
+    method: "get",
     path: "/alligators/Mary", 
     headers: {"Accept" => "application/json"}).
   will_respond_with(
@@ -65,3 +68,23 @@ animal_service.given("an alligator named Mary exists").
 ```
 
 The mock server will return `{"name": "Mary", "age": 73}` in the consumer tests, but when `pact:verify` is run in the provider, it will just check that the type of the `name` value is a String, and that the type of the `age` value is a Fixnum. If you wanted an exact match on "Mary", but to allow any age, you would only wrap the `73` in the `Pact::SomethingLike`.
+
+For request matching, the mock server will allow any values of the same type to be used in the consumer test, but will replay the given values in `pact:verify`.
+
+```ruby
+animal_service.given("an alligator named Mary exists").
+  upon_receiving("a request to update an alligator").
+  with(
+    get: "put",
+    path: "/alligators/Mary", 
+    headers: {"Accept" => "application/json"},
+    body: {
+      age: SomethingLike.new(10)
+    }).
+  will_respond_with(
+    status: 200,
+    headers: {"Content-Type" => "application/json"},
+    body: {
+      age: 10
+    })
+```
