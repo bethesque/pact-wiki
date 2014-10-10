@@ -88,3 +88,5 @@ animal_service.given("an alligator named Mary exists").
       age: 10
     })
 ```
+
+Like regular expressions, `SomethingLike` is a Ruby specific feature, and will only work if your provider is also a Ruby project. Type based matching will be incorporated as part of the v2 Pact Specification, and will then be cross language compatible.
