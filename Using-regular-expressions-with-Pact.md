@@ -1,3 +1,4 @@
+# Regular expressions
 Sometimes you will have keys in a request or response with values that are hard to know beforehand - timestamps and generated IDs are two examples.
 
 What you need is a way to say "I expect something matching this regular expression, but I don't care what the actual value is". If you are using the Ruby implementation of Pact for both the Consumer and the Provider, then you are in luck! [**](#footnote)
@@ -41,3 +42,26 @@ You can use `Pact::Term` for request and response header values, the request que
 
 
 <a name="footnote">**</a> (Unfortunately, this technique involves serialising Ruby specific JSON, so it can't be used with any of the other Pact implementations. Hang around for v2 of the [Pact Specification](https://github.com/bethesque/pact-specification) for cross language regular expressions.)
+
+# Type matching
+
+Often, you will not care what the exact value is at a particular path is, you just care that a value is present and that it is of the expected type. For this scenario, you can use `Pact::SomethingLike`.
+
+```ruby
+animal_service.given("an alligator named Mary exists").
+  upon_receiving("a request for an alligator").
+  with(
+    path: "/alligators/Mary", 
+    headers: {"Accept" => "application/json"}).
+  will_respond_with(
+    status: 200,
+    headers: {"Content-Type" => "application/json"},
+    body: {
+      Pact::SomethingLike.new({
+        name: "Mary",
+        age: 73
+      })
+    })
+```
+
+The example above will return `{"name": "Mary", "age": 73}` from the mock server, but when `pact:verify` is run, it will just check that the type of the `name` value is a String, and that the type of the `age` value is a Fixnum. If you wanted an exact match on "Mary", but to allow any age, you would only wrap the `73` in the `Pact::SomethingLike`.
