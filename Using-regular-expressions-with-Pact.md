@@ -57,11 +57,11 @@ animal_service.given("an alligator named Mary exists").
     status: 200,
     headers: {"Content-Type" => "application/json"},
     body: {
-      Pact::SomethingLike.new({
+      Pact::SomethingLike.new(
         name: "Mary",
         age: 73
-      })
+      )
     })
 ```
 
-The example above will return `{"name": "Mary", "age": 73}` from the mock server, but when `pact:verify` is run, it will just check that the type of the `name` value is a String, and that the type of the `age` value is a Fixnum. If you wanted an exact match on "Mary", but to allow any age, you would only wrap the `73` in the `Pact::SomethingLike`.
+The mock server will return `{"name": "Mary", "age": 73}` in the consumer tests, but when `pact:verify` is run in the provider, it will just check that the type of the `name` value is a String, and that the type of the `age` value is a Fixnum. If you wanted an exact match on "Mary", but to allow any age, you would only wrap the `73` in the `Pact::SomethingLike`.
