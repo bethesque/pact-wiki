@@ -6,7 +6,7 @@ Welcome to the pact wiki!
 * [Frequently asked questions](FAQ)
 * [Rarely asked questions](RAQ)
 * [Sharing pacts between consumer and provider](Sharing-pacts-between-consumer-and-provider)
-* [Using regular expressions with Pact](Using-regular-expressions-with-Pact)
+* [Regular expressions and type matching with Pact](Regular-expressions-and-type-matching-with-Pact)
 * [Best practices](Best-practices)
 * [Development workflow](Development-workflow)
 * [Troubleshooting](Troubleshooting)
